@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Prana Living Bali · Gentle Start Ritual</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f0ede6;
+  --bg2: #e6e2d9;
+  --card: #f9f6ef;
+  --text: #181510;
+  --text2: #4a4030;
+  --desc: #6a7a5a;
+  --accent: #3d6b4a;
+  --accent-warm: #c47a2a;
+  --line: rgba(61,107,74,0.15);
+  --border: rgba(61,107,74,0.18);
+}
+.dark {
+  --bg: #080d09;
+  --bg2: #0e130f;
+  --card: #121a13;
+  --text: #e4eed8;
+  --text2: #96b882;
+  --desc: #FFE8D0;
+  --accent: #6aaa58;
+  --accent-warm: #d4903a;
+  --line: rgba(106,170,88,0.12);
+  --border: rgba(106,170,88,0.18);
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg); color: var(--text);
+  font-family: 'Jost', sans-serif; font-weight: 300;
+  transition: background 1.2s ease, color 0.6s ease;
+  overflow-x: hidden;
+}
+
+.mode-badge {
+  position: fixed; top: 18px; right: 18px; z-index: 999;
+  font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--desc); background: var(--card);
+  border: 0.5px solid var(--border);
+  padding: 5px 13px; border-radius: 30px;
+  font-family: 'Jost', sans-serif; font-weight: 300;
+  pointer-events: none;
+}
+
+.hero {
+  min-height: 100svh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 90px 28px 70px;
+  position: relative; overflow: hidden;
+}
+
+.sun-stage { position: relative; width: 80px; height: 80px; margin-bottom: 52px; }
+.sun-core { position: absolute; inset: 16px; border-radius: 50%; background: var(--accent-warm); animation: sun-pulse 3s ease-in-out infinite; }
+@keyframes sun-pulse { 0%,100% { transform:scale(1); opacity:1; } 50% { transform:scale(0.88); opacity:0.75; } }
+.sun-ring { position: absolute; border-radius: 50%; border: 1px solid var(--accent-warm); animation: sun-ring-expand var(--ring-dur) ease-out infinite var(--ring-delay); }
+@keyframes sun-ring-expand { 0% { opacity:0.5; transform:scale(1); } 100% { opacity:0; transform:scale(2.4); } }
+.sun-rays { position: absolute; inset: 0; animation: sun-rotate 18s linear infinite; }
+@keyframes sun-rotate { to { transform: rotate(360deg); } }
+.ray { position: absolute; top: 50%; left: 50%; width: 2px; height: 10px; background: var(--accent-warm); opacity: 0.45; border-radius: 2px; transform-origin: center bottom; margin-left: -1px; margin-top: -40px; }
+
+.hero-eyebrow { font-size: 9.5px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--accent); font-weight: 400; margin-bottom: 18px; opacity: 0; animation: rise-in 0.9s ease 0.3s forwards; }
+.hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(46px, 12vw, 80px); font-weight: 300; line-height: 1.05; text-align: center; color: var(--text); margin-bottom: 6px; opacity: 0; animation: rise-in 0.9s ease 0.5s forwards; }
+.hero-title em { font-style: italic; color: var(--accent); }
+.hero-subtitle { font-size: 13px; letter-spacing: 0.14em; color: var(--desc); margin-bottom: 58px; text-align: center; opacity: 0; animation: rise-in 0.9s ease 0.7s forwards; }
+@keyframes rise-in { from { opacity:0; transform:translateY(22px); } to { opacity:1; transform:translateY(0); } }
+
+.hero-mantra-wrap { width: 100%; max-width: 440px; opacity: 0; animation: rise-in 1s ease 1s forwards; }
+.hero-mantra-card { background: var(--card); border: 0.5px solid var(--border); border-radius: 22px; padding: 44px 36px 36px; position: relative; overflow: hidden; }
+.hero-mantra-card::before { content: '\201C'; font-family: 'Cormorant Garamond', serif; font-size: 140px; line-height: 0.75; color: var(--accent); opacity: 0.1; position: absolute; top: 14px; left: 18px; pointer-events: none; }
+.hero-mantra-text { font-family: 'Cormorant Garamond', serif; font-size: clamp(20px, 5vw, 28px); font-weight: 300; font-style: italic; line-height: 1.55; color: var(--text); text-align: center; position: relative; z-index: 1; margin-bottom: 22px; }
+.hero-mantra-divider { width: 32px; height: 1px; background: var(--accent); opacity: 0.45; margin: 0 auto 14px; }
+.hero-mantra-label { font-size: 10px; letter-spacing: 0.22em; color: var(--desc); text-align: center; text-transform: uppercase; }
+
+.scroll-invite { margin-top: 64px; display: flex; flex-direction: column; align-items: center; gap: 10px; opacity: 0; animation: rise-in 0.9s ease 1.5s forwards; }
+.scroll-invite span { font-size: 10px; letter-spacing: 0.2em; color: var(--desc); text-transform: uppercase; }
+.scroll-bar { width: 1px; height: 52px; background: linear-gradient(to bottom, var(--accent), transparent); animation: bar-pulse 2.2s ease-in-out infinite; }
+@keyframes bar-pulse { 0%,100% { transform:scaleY(1); opacity:0.45; } 50% { transform:scaleY(0.4); opacity:1; } }
+
+.section { padding: 100px 28px; max-width: 560px; margin: 0 auto; }
+.section-eyebrow { font-size: 9.5px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--accent); font-weight: 400; display: flex; align-items: center; gap: 14px; margin-bottom: 44px; }
+.section-eyebrow::after { content:''; flex:1; height:0.5px; background:var(--accent); opacity:0.25; }
+
+.ing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+.ing-card { background: var(--card); border: 0.5px solid var(--border); border-radius: 18px; padding: 26px 20px; opacity: 0; transform: translateY(18px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.ing-card.vis { opacity:1; transform:translateY(0); }
+.ing-icon { font-size: 26px; margin-bottom: 12px; line-height: 1; }
+.ing-name { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 300; color: var(--text); margin-bottom: 7px; }
+.ing-desc { font-size: 12.5px; color: var(--desc); line-height: 1.7; }
+
+.ing-wide { background: var(--card); border: 0.5px solid var(--border); border-radius: 18px; padding: 24px 22px; display: flex; align-items: center; gap: 18px; opacity: 0; transform: translateY(18px); transition: opacity 0.7s ease 0.2s, transform 0.7s ease 0.2s; }
+.ing-wide.vis { opacity:1; transform:translateY(0); }
+.ing-wide .ing-icon { margin: 0; flex-shrink: 0; }
+.burn-stats { display: flex; gap: 20px; margin-top: 8px; }
+.burn-stat { font-size: 11px; color: var(--desc); letter-spacing: 0.06em; }
+.burn-stat strong { color: var(--accent); font-weight: 400; }
+
+.steps { display: flex; flex-direction: column; gap: 28px; }
+.step { display: grid; grid-template-columns: 40px 1fr; gap: 20px; align-items: start; opacity: 0; transform: translateX(-16px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.step.vis { opacity:1; transform:translateX(0); }
+.step-num { font-family: 'Cormorant Garamond', serif; font-size: 34px; font-weight: 300; color: var(--accent); opacity: 0.55; line-height: 1; text-align: right; padding-top: 2px; }
+.step-title { font-size: 15px; font-weight: 400; color: var(--text); margin-bottom: 6px; letter-spacing: 0.02em; }
+.step-desc { font-size: 13.5px; color: var(--desc); line-height: 1.75; }
+
+.breath-section { background: var(--bg2); padding: 100px 28px; }
+.breath-inner { max-width: 560px; margin: 0 auto; text-align: center; }
+.breath-circle-wrap { margin: 52px auto 48px; width: 160px; height: 160px; position: relative; cursor: pointer; }
+.breath-ring-outer { position: absolute; inset: 0; border-radius: 50%; border: 1px solid var(--border); }
+.breath-ring-fill { position: absolute; inset: 12px; border-radius: 50%; background: rgba(61,107,74,0.08); }
+.breath-core { position: absolute; inset: 24px; border-radius: 50%; background: var(--accent); opacity: 0.7; transition: transform 1s ease, opacity 0.5s ease; }
+.breath-label { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; }
+.breath-word { font-size: 18px; font-weight: 300; font-style: italic; color: var(--text); }
+.breath-count { font-size: 28px; font-weight: 300; color: var(--accent); line-height: 1; margin-top: 2px; }
+.breath-cta { font-size: 13px; color: var(--desc); letter-spacing: 0.04em; margin-bottom: 32px; line-height: 1.6; }
+.breath-start-btn { background: none; border: 0.5px solid var(--border); color: var(--text2); font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; padding: 13px 34px; border-radius: 40px; cursor: pointer; transition: all 0.35s ease; }
+.breath-start-btn:hover, .breath-start-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+.mantras-section { padding: 100px 28px; max-width: 560px; margin: 0 auto; }
+.mantras-inner { text-align: center; }
+.mantra-stage { min-height: 220px; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 48px 0 36px; }
+.mantra-rotating { font-family: 'Cormorant Garamond', serif; font-size: clamp(22px, 6vw, 36px); font-weight: 300; font-style: italic; line-height: 1.5; color: var(--text); text-align: center; max-width: 420px; transition: opacity 0.55s ease, transform 0.55s ease; }
+.mantra-rotating.fading { opacity:0; transform:translateY(-12px); }
+.mantra-src { margin-top: 18px; font-size: 10.5px; letter-spacing: 0.22em; color: var(--accent); text-transform: uppercase; transition: opacity 0.4s ease; }
+.mantra-src.fading { opacity:0; }
+.pip-row { display: flex; gap: 8px; justify-content: center; margin-bottom: 30px; }
+.pip { width: 5px; height: 5px; border-radius: 50%; background: var(--desc); opacity:0.3; cursor: pointer; transition: all 0.3s ease; }
+.pip.on { background: var(--accent); opacity:1; transform:scale(1.5); }
+.mantra-next-btn { background: none; border: 0.5px solid var(--border); color: var(--text2); font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; padding: 13px 34px; border-radius: 40px; cursor: pointer; transition: all 0.35s ease; }
+.mantra-next-btn:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+.dream-section { background: var(--bg2); padding: 100px 28px; }
+.dream-inner { max-width: 560px; margin: 0 auto; }
+.dream-text { font-family: 'Cormorant Garamond', serif; font-size: clamp(20px, 5vw, 30px); font-weight: 300; line-height: 1.75; color: var(--text); margin-bottom: 56px; opacity: 0; transform: translateY(22px); transition: opacity 1s ease, transform 1s ease; }
+.dream-text.vis { opacity:1; transform:translateY(0); }
+.dream-text em { color: var(--accent); font-style: italic; }
+
+.ig-card { background: var(--card); border: 0.5px solid var(--border); border-radius: 24px; padding: 44px 32px; text-align: center; opacity: 0; transform: translateY(22px); transition: opacity 1s ease 0.25s, transform 1s ease 0.25s; }
+.ig-card.vis { opacity:1; transform:translateY(0); }
+.ig-orb { width: 56px; height: 56px; border-radius: 16px; background: linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); display: flex; align-items: center; justify-content: center; margin: 0 auto 22px; }
+.ig-orb svg { width: 28px; height: 28px; fill: #fff; }
+.ig-heading { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 300; color: var(--text); margin-bottom: 14px; }
+.ig-body { font-size: 14px; color: var(--desc); line-height: 1.8; max-width: 320px; margin: 0 auto 34px; }
+.ig-btn { display: inline-block; background: var(--accent); color: #fff; font-family: 'Jost', sans-serif; font-weight: 300; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; padding: 15px 40px; border-radius: 40px; text-decoration: none; border: none; cursor: pointer; transition: all 0.3s ease; }
+.ig-btn:hover { opacity: 0.82; transform: translateY(-2px); }
+.ig-handle { margin-top: 14px; font-size: 13px; color: var(--desc); letter-spacing: 0.06em; }
+
+footer { padding: 60px 28px 48px; text-align: center; border-top: 0.5px solid var(--line); }
+.footer-brand { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 300; color: var(--text2); margin-bottom: 8px; }
+.footer-brand em { font-style: italic; color: var(--accent); }
+.footer-line { font-size: 10px; letter-spacing: 0.2em; color: var(--desc); text-transform: uppercase; }
+</style>
+</head>
+<body>
+
+<div class="mode-badge" id="badge"></div>
+
+<main>
+
+<section class="hero">
+  <div class="sun-stage">
+    <div class="sun-rays" id="sun-rays"></div>
+    <div class="sun-ring" style="inset:6px;--ring-dur:3s;--ring-delay:0s"></div>
+    <div class="sun-ring" style="inset:6px;--ring-dur:3s;--ring-delay:1.5s"></div>
+    <div class="sun-core"></div>
+  </div>
+
+  <p class="hero-eyebrow">Prana Living Bali &nbsp; Sandalwood</p>
+  <h1 class="hero-title">Gentle&nbsp;<em>Start</em><br>Ritual</h1>
+  <p class="hero-subtitle">Bright &middot; Clear &middot; Alive</p>
+
+  <div class="hero-mantra-wrap">
+    <div class="hero-mantra-card">
+      <p class="hero-mantra-text" id="hero-mantra-text"></p>
+      <div class="hero-mantra-divider"></div>
+      <p class="hero-mantra-label">Your mantra for this morning</p>
+    </div>
+  </div>
+
+  <div class="scroll-invite">
+    <span>begin your day</span>
+    <div class="scroll-bar"></div>
+  </div>
+</section>
+
+<section class="section">
+  <p class="section-eyebrow">What's inside</p>
+  <div class="ing-grid">
+    <div class="ing-card" data-scroll>
+      <div class="ing-icon">🌳</div>
+      <div class="ing-name">Sandalwood</div>
+      <div class="ing-desc">Sacred wood of clarity. Creamy and warm, used in morning meditation across Asia for centuries. It opens the mind without forcing it.</div>
+    </div>
+    <div class="ing-card" data-scroll style="transition-delay:0.12s">
+      <div class="ing-icon">🍋</div>
+      <div class="ing-name">Lemongrass</div>
+      <div class="ing-desc">A bright citrus lift that clears stale energy. The kind of scent that reminds your body it's already a new day.</div>
+    </div>
+  </div>
+  <div class="ing-wide" data-scroll>
+    <div class="ing-icon">🌸</div>
+    <div>
+      <div class="ing-name">White Jasmine &amp; Clove</div>
+      <div class="ing-desc" style="font-size:12.5px;color:var(--desc);line-height:1.7;margin-top:5px">A Balinese offering blend. Floral and open, with a spice that wakes the senses gently. Like sunlight coming through the curtain.</div>
+      <div class="burn-stats">
+        <span class="burn-stat"><strong>5 pcs</strong> per pack</span>
+        <span class="burn-stat"><strong>3 hrs</strong> burn</span>
+        <span class="burn-stat"><strong>7 hrs</strong> scent</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:20px">
+  <p class="section-eyebrow">The morning ritual</p>
+  <div class="steps">
+    <div class="step" data-scroll>
+      <div class="step-num">01</div>
+      <div><div class="step-title">Open a window</div><div class="step-desc">Let the morning air find you before anything else does. Before the phone. Before the plans. Just air.</div></div>
+    </div>
+    <div class="step" data-scroll style="transition-delay:0.1s">
+      <div class="step-num">02</div>
+      <div><div class="step-title">Set one intention</div><div class="step-desc">Not a list. One word. One feeling. One thing you want to carry into the day. That's enough.</div></div>
+    </div>
+    <div class="step" data-scroll style="transition-delay:0.2s">
+      <div class="step-num">03</div>
+      <div><div class="step-title">Light your Sandalwood</div><div class="step-desc">Hold the stick gently. As the smoke lifts, let it take your intention with it, out into the world.</div></div>
+    </div>
+    <div class="step" data-scroll style="transition-delay:0.3s">
+      <div class="step-num">04</div>
+      <div><div class="step-title">Breathe in the clarity</div><div class="step-desc">In for 4. Hold briefly. Out for 6. The bright scent opens. The exhale releases. Do this three times.</div></div>
+    </div>
+    <div class="step" data-scroll style="transition-delay:0.4s">
+      <div class="step-num">05</div>
+      <div><div class="step-title">Begin</div><div class="step-desc">You are ready. Not because everything is figured out. Because you chose to begin anyway. That is enough.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="breath-section">
+  <div class="breath-inner">
+    <p class="section-eyebrow" style="justify-content:center;max-width:220px;margin:0 auto 0">Morning breath</p>
+    <div class="breath-circle-wrap" id="breath-wrap">
+      <div class="breath-ring-outer"></div>
+      <div class="breath-ring-fill"></div>
+      <div class="breath-core" id="breath-core"></div>
+      <div class="breath-label">
+        <span class="breath-word" id="breath-word">Ready</span>
+        <span class="breath-count" id="breath-count">&nbsp;</span>
+      </div>
+    </div>
+    <p class="breath-cta">Tap the circle for a guided morning breath.<br>Four rounds. Takes about two minutes.</p>
+    <button class="breath-start-btn" id="breath-btn">Start breathing</button>
+  </div>
+</section>
+
+<section class="mantras-section">
+  <div class="mantras-inner">
+    <p class="section-eyebrow" style="justify-content:center;max-width:220px;margin:0 auto 0">Morning mantras</p>
+    <div class="mantra-stage">
+      <p class="mantra-rotating" id="m-text"></p>
+      <p class="mantra-src" id="m-src"></p>
+    </div>
+    <div class="pip-row" id="pip-row"></div>
+    <button class="mantra-next-btn" id="next-btn">Next mantra</button>
+  </div>
+</section>
+
+<section class="dream-section">
+  <div class="dream-inner">
+    <p class="section-eyebrow">Prana's dream</p>
+    <p class="dream-text" data-scroll>
+      Prana Living has a dream and it won't happen without you.<br><br>
+      We believe you should be able to bring <em>Bali's morning energy</em> home with you, wherever home is.<br><br>
+      We're working toward shipping worldwide so more Balinese craftswomen can earn a living doing what they love. Every stick you burn is part of that story.
+    </p>
+    <div class="ig-card" data-scroll>
+      <div class="ig-orb">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+        </svg>
+      </div>
+      <p class="ig-heading">Walk with us</p>
+      <p class="ig-body">Follow our journey on Instagram. We share the people behind the sticks, the rituals that inspire us, and every small step toward getting Bali to your doorstep.</p>
+      <a class="ig-btn" href="https://instagram.com/pranalivingbali" target="_blank">Follow @pranalivingbali</a>
+      <p class="ig-handle">@pranalivingbali</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p class="footer-brand">Prana <em>Living</em> Bali</p>
+  <p class="footer-line">Made with love &nbsp;·&nbsp; Island of the Gods</p>
+</footer>
+
+<script>
+function applyTheme(){
+  const h=new Date().getHours();
+  const dark=h>=18||h<7;
+  document.body.classList.toggle('dark',dark);
+  const t=new Date().toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'});
+  document.getElementById('badge').textContent=(dark?'🌙 ':'☀️  ')+t;
+}
+applyTheme();
+setInterval(applyTheme,30000);
+
+(function buildSun(){
+  const rays=document.getElementById('sun-rays');
+  for(let i=0;i<12;i++){
+    const r=document.createElement('div');
+    r.className='ray';
+    r.style.transform=`rotate(${i*30}deg) translateY(-30px)`;
+    r.style.marginTop='-30px';
+    rays.appendChild(r);
+  }
+})();
+
+const morningMantras=[
+  "You don't have to be a different person today. You just have to begin.",
+  "Energy flows where attention goes. Choose carefully this morning.",
+  "A good day starts with a good thought. This is yours.",
+  "You are not starting over. You are starting from experience.",
+];
+(function(){
+  const h=new Date().getHours();
+  let m;
+  if(h>=5&&h<9) m=morningMantras[0];
+  else if(h>=9&&h<13) m=morningMantras[1];
+  else m=morningMantras[Math.floor(Math.random()*morningMantras.length)];
+  document.getElementById('hero-mantra-text').textContent='\u201C'+m+'\u201D';
+})();
+
+let breathRunning=false;
+let breathTimer=null;
+const phases=[{word:'Inhale',dur:4},{word:'Hold',dur:2},{word:'Exhale',dur:6},{word:'Rest',dur:2}];
+let phaseIdx=0,countVal=0,cycles=0;
+const bWord=document.getElementById('breath-word');
+const bCount=document.getElementById('breath-count');
+const bCore=document.getElementById('breath-core');
+const bBtn=document.getElementById('breath-btn');
+const bWrap=document.getElementById('breath-wrap');
+
+function stopBreath(){
+  breathRunning=false; clearInterval(breathTimer);
+  bWord.textContent='Done'; bCount.textContent='\u2665';
+  bCore.style.transform='scale(1)'; bCore.style.opacity='0.7';
+  bBtn.textContent='Breathe again'; bBtn.classList.remove('active');
+  setTimeout(()=>{ bWord.textContent='\u2741'; bCount.textContent=''; },2000);
+}
+function runBreath(){
+  breathRunning=true; phaseIdx=0; cycles=0; countVal=0;
+  bBtn.classList.add('active'); bBtn.textContent='Stop';
+  function tick(){
+    const ph=phases[phaseIdx]; countVal++;
+    bWord.textContent=ph.word; bCount.textContent=countVal;
+    if(ph.word==='Inhale') bCore.style.transform=`scale(${0.7+0.3*(countVal/ph.dur)})`;
+    if(ph.word==='Exhale') bCore.style.transform=`scale(${1-0.3*(countVal/ph.dur)})`;
+    if(ph.word==='Hold') bCore.style.opacity='0.9';
+    if(ph.word==='Rest') bCore.style.opacity='0.6';
+    if(countVal>=ph.dur){ countVal=0; phaseIdx=(phaseIdx+1)%phases.length; if(phaseIdx===0){ cycles++; if(cycles>=4){ stopBreath(); return; } } }
+  }
+  tick(); breathTimer=setInterval(tick,1000);
+}
+bBtn.onclick=()=>{ if(breathRunning) stopBreath(); else runBreath(); };
+bWrap.onclick=()=>{ if(!breathRunning) runBreath(); };
+
+const mantras=[
+  {t:"You don't have to be a different person today. You just have to begin.",s:""},
+  {t:"Energy flows where attention goes. Choose carefully this morning.",s:""},
+  {t:"A gentle start is still a start. Do not underestimate it.",s:""},
+  {t:"You are not starting over. You are starting from experience.",s:""},
+  {t:"The most productive thing you can do today is show up as yourself.",s:""},
+  {t:"Progress doesn't always look like movement. Sometimes it looks like stillness before action.",s:""},
+  {t:"You were not made to rush. You were made to arrive.",s:""},
+];
+
+let cur=0;
+const mText=document.getElementById('m-text');
+const mSrc=document.getElementById('m-src');
+const pipRow=document.getElementById('pip-row');
+let autoTimer;
+
+function buildPips(){
+  pipRow.innerHTML='';
+  mantras.forEach((_,i)=>{
+    const p=document.createElement('div');
+    p.className='pip'+(i===cur?' on':'');
+    p.onclick=()=>showMantra(i);
+    pipRow.appendChild(p);
+  });
+}
+function showMantra(i,anim=true){
+  if(anim){
+    mText.classList.add('fading'); mSrc.classList.add('fading');
+    setTimeout(()=>{
+      cur=i; mText.textContent='\u201C'+mantras[i].t+'\u201D'; mSrc.textContent=mantras[i].s; mSrc.style.visibility=mantras[i].s?'visible':'hidden';
+      mText.classList.remove('fading'); mSrc.classList.remove('fading'); buildPips();
+    },480);
+  } else { cur=i; mText.textContent='\u201C'+mantras[i].t+'\u201D'; mSrc.textContent=mantras[i].s; mSrc.style.visibility=mantras[i].s?'visible':'hidden'; buildPips(); }
+}
+function startAuto(){ autoTimer=setInterval(()=>showMantra((cur+1)%mantras.length),7500); }
+document.getElementById('next-btn').onclick=()=>{ clearInterval(autoTimer); showMantra((cur+1)%mantras.length); startAuto(); };
+showMantra(0,false); startAuto();
+
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(!e.isIntersecting) return; e.target.classList.add('vis'); obs.unobserve(e.target); });
+},{threshold:0.15});
+document.querySelectorAll('[data-scroll]').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
